@@ -112,3 +112,12 @@ func LookupSession(sessionID SessionID) (s *session, ok bool) {
 	s, ok = sessions[sessionID]
 	return
 }
+
+func SetNextSenderMsgSeqNum(sessionID SessionID, num int) error {
+	session, ok := LookupSession(sessionID)
+	if !ok {
+		return errUnknownSession
+	}
+
+	return session.store.SetNextSenderMsgSeqNum(num)
+}
