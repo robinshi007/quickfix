@@ -105,7 +105,7 @@ func registerSession(s *session) error {
 	return nil
 }
 
-func lookupSession(sessionID SessionID) (s *session, ok bool) {
+func LookupSession(sessionID SessionID) (s *session, ok bool) {
 	sessionsLock.RLock()
 	defer sessionsLock.RUnlock()
 
