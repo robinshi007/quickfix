@@ -56,7 +56,7 @@ func Send(m Messagable) (err error) {
 // SendToTarget sends a message based on the sessionID. Convenient for use in FromApp since it provides a session ID for incoming messages.
 func SendToTarget(m Messagable, sessionID SessionID) error {
 	msg := m.ToMessage()
-	session, ok := lookupSession(sessionID)
+	session, ok := LookupSession(sessionID)
 	if !ok {
 		return errUnknownSession
 	}
@@ -66,7 +66,7 @@ func SendToTarget(m Messagable, sessionID SessionID) error {
 
 // ResetSession resets session's sequence numbers.
 func ResetSession(sessionID SessionID) error {
-	session, ok := lookupSession(sessionID)
+	session, ok := LookupSession(sessionID)
 	if !ok {
 		return errUnknownSession
 	}
